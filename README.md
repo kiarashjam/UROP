@@ -5,7 +5,7 @@ This operator is finding the start and minimum distance with following 19 comman
 
 # Requirments
 
-First, install the requirements and dependencies with the commands:
+For starting, install the requirements and dependencies with the below command:
 
 ```pip install -r requirements.txt```
 
