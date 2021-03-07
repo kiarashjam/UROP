@@ -20,6 +20,7 @@ last_points = start_position
 
 
 def generate_genome(last_point) :
+
     valid = True
     while valid:
         commands = ["s", "r", "l"]
@@ -40,10 +41,10 @@ def generate_genome(last_point) :
 
 
         valid = False
-        # for node in node_position_list:
-        #     dst = distance.euclidean(node, end_point)
-        #     if dst < 1:
-        #         valid = True
+        for node in node_position_list:
+            dst = distance.euclidean(node, end_point)
+            if dst < 1:
+                valid = True
 
 
 
@@ -51,8 +52,7 @@ def generate_genome(last_point) :
 
 
 # generate a population
-def generate_population() :
-    print("step 1")
+def generate_population():
     node_position_list.clear()
     population = list()
     # first direction should be straight
@@ -64,14 +64,12 @@ def generate_population() :
     # all the 17 commands generation
     i=0
     while i < 17:
-        # print("step " + str(i))
         new_genome, new_position_node= generate_genome(last_point)
         last_point = new_position_node
         node_position_list.append(new_position_node)
         population.append(new_genome)
         i = i+1
     # the last one also should be straight command
-    # population.append(["s", 0])
     return population
 
 def fitness(population):
@@ -79,15 +77,11 @@ def fitness(population):
     end_point , track_points = executor(population)
     dst = distance.euclidean(start_position, end_point)
     return dst, track_points
-
-
 #################################
-# def mutation (population) :
-#     print("sa9")
-#     index = random.randrange(len(population))
-#     population[index]= generate_genome()
-#     print("s13")
-#     return population
+def mutation (population):
+    index = random.randrange(len(population))
+    population[index]= generate_genome(last_points)
+    return population
 
 ##########################33
 def single_point_crossover(a,b):
@@ -96,62 +90,13 @@ def single_point_crossover(a,b):
     # if the length is too low
 
     length = len(a)
-    if length < 2 :
+    if length < 2:
         return a, b
     p = random.randint(1, length - 1)
     rtl = a[0:p] + b[p:], b[0:p], a[p:]
     return rtl
 
 #########################
-
-# def run_evolutaion(
-#         populate_func,
-#         fitness_func,
-#         fitness_limit,
-#         selection_fun = selection_pair,
-#         crossover_func = single_point_crossover,
-#         mutation_func= mutation,
-#         generation_limit = 100,):
-#
-#     population = generate_population()
-#     for i in range(generation_limit):
-#
-#         population = sorted(
-#             population,
-#             key=lambda genome: fitness_func(genome),
-#             reverse=True
-#         )
-#         if fitness_func(population[0]) >= fitness_limit:
-#             break
-#         next_generation = population[0:2]
-#         print("s9")
-#
-#         for j in range(int(len(population)/2) - 1):
-#             print("rang = " + str(range(int(len(population)/2)) ))
-#             print(j)
-#             print("s10")
-#             # print ("here1 ")
-#             # print("run evaluation + population" +str(population))
-#             # print("run evaluation +fitness " + str(fitness_func))
-#             parents = selection_fun(population, fitness_func)
-#             print("sa10")
-#             offspring_a, offspring_b = crossover_func(parents[0], parents[1])
-#             print("s15")
-#             offspring_a = mutation_func(offspring_a)
-#             print("sa16")
-#             offspring_b = mutation_func(offspring_b)
-#             print("sa17")
-#             next_generation +=[offspring_a,offspring_b]
-#             print("sa18")
-#         population = next_generation
-#         print("sa19")
-#     population = sorted(
-#         population,
-#         key=lambda genome: fitness_func(genome),
-#         reverse=True
-#     )
-#     print("s9")
-#     return population, i
 
 
 def executor(commands):
@@ -193,29 +138,16 @@ def run_evolutaion():
         population = generate_population()
         distance ,track_points = fitness(population)
         all_population.append([distance, track_points])
-        # print("distance = " + str(distance) + " / number " + str(i))
-        # print("plot = " + str(type(plt)) + " / number " + str(i))
         i = i + 1
     min_distance = all_population[0][0]
-    # print(all_population[0][1])
-
     points = all_population[0][1]
     for node in all_population:
-        # print("node zero = "+  str(node[0]))
-        # print("min distance = " +str(min_distance))
-        if (min_distance < node[0]):
+        if (min_distance > node[0]):
             points = node[1]
             min_distance = node[0]
+    print("The lowest distance in amount of "+str(amount)+" is  = " +str(min_distance))
     drawing_plot(points)
 
 
 
-
-
 run_evolutaion()
-
-# s =fitness(generate_population())
-# print(s)
-# distance, end_point = generate_genome()
-# print(end_point)
-# print(distance)
