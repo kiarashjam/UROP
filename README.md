@@ -38,7 +38,7 @@ In this function, it builds one command as the genome. It chooses randomly from 
 
 also in the last part, which considers the validity of the genome 
 
-If it is valid, it should have the distance "one" from all nodes; otherwise, it returns the False validity, making the function make another genome. It will iterates until the genome finds the valid one.
+If it is valid, it should have the distance "one" from all nodes; otherwise, it returns the False validity, making the function make another genome. It will iterates until the genome finds the valid one.(for avoiding the loop)
 
 
 ## 2- generate_population()
