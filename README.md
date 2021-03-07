@@ -72,6 +72,8 @@ The executor will execute all the commands on the ga classes and return the poin
 
 This function draws the plot with the coordinates.
 
+The beginning has lighter color. However,  the ending point has a darker color, as you can see in figure 1.
+
 # outcome
 
 The outcome will be the maximum distance of the commands and the minimum distance for the commands with the iterate amount = 200.
