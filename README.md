@@ -24,7 +24,7 @@ As the minimum distance, print the least distance possible in their solution.
 
 it also shows the maximum distance in their build population in the plot:
 
-![alt text](https://github.com/kiarashjam/UROP/blob/master/Maximum_distance.png)
+![alt text](https://github.com/kiarashjam/UROP/blob/master/lowest_distance.png)
 
 
 Also, it can generate the plot for the minimum distance.
