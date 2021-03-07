@@ -16,7 +16,11 @@ def generate_track(chromosome_elements: List[ChromosomeElem]) -> List[TrackPoint
     span = Vector3(x=0.0, y=0.0, z=0.0)
     span_dist = 2
 
+
+
     track_script = TrackScript(chromosome_elements=chromosome_elements)
+
+
     if track_script.parse_chromosome():
 
         dy = 0.0
@@ -30,20 +34,22 @@ def generate_track(chromosome_elements: List[ChromosomeElem]) -> List[TrackPoint
 
         for track_script_element in track_script.track:
 
+
             if track_script_element.state == State.AngleDY:
                 turn_val = track_script_element.value
+
             elif track_script_element.state == State.CurveY:
                 dy = track_script_element.value * turn_val
             else:
                 dy = 0.0
 
             for i in range(track_script_element.num_to_set):
+
                 turn = dy
                 rot = Quaternion.new_rotate_euler(math.radians(turn), 0, 0)
                 span = rot * span.normalized()
                 span *= span_dist
-                s = s + span
-
+                s = s + span             #
                 track_points.append(TrackPoint(x=s.x, y=s.z))
 
-    return track_points
+    return track_points , s
