@@ -1,5 +1,5 @@
 # Purpose of the project
-The goall is to simulate "the Developing Self-Driving Car Autopilots using Reinforcement Learning Algorithms" by implementing a Genetic Algorithm.
+The goal is to simulate "the Developing Self-Driving Car Autopilots using Reinforcement Learning Algorithms" by implementing a Genetic Algorithm.
 The code must generate nearby tracks that create the path from start of the instructions' list.
 This operator is finding the start and minimum distance with following 19 commands.
 
