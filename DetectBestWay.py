@@ -142,7 +142,7 @@ def run_evolutaion():
     min_distance = all_population[0][0]
     points = all_population[0][1]
     for node in all_population:
-        if (min_distance > node[0]):
+        if (min_distance < node[0]):
             points = node[1]
             min_distance = node[0]
     print("The lowest distance in amount of "+str(amount)+" is  = " +str(min_distance))
